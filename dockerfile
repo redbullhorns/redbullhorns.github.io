@@ -1,11 +1,18 @@
-# Create a Jekyll container from a Ruby Alpine image
+FROM ubuntu:20.04
+RUN apt update
+RUN apt install -y ruby-full
+RUN apt-get install -y build-essential zlib1g-dev
+RUN gem install jekyll bundler
 
-# At a minimum, use Ruby 2.5 or later
-FROM ruby:2.7-alpine3.15
-
-# Add Jekyll dependencies to Alpine
-RUN apk update
-RUN apk add --no-cache build-base gcc cmake git
-
-# Update the Ruby bundler and install Jekyll
-RUN gem update bundler && gem install bundler jekyll
+# ENV HOME=/home/user
+# ENV GEM_HOME=/home/user/gems
+# ENV PATH=/home/user/gems/bin:$PATH
+# EXPOSE 4000
+# RUN ruby --version
+# RUN gem --version
+# WORKDIR /home/user/
+# RUN mkdir -p /home/user/my-awesome-site
+# RUN jekyll new my-awesome-site
+# RUN ls /home/user
+# WORKDIR /home/user/my-awesome-site
+# CMD [ "bundle", "exec", "jekyll", "serve", "--force_polling", "-H", "0.0.0.0", "-P", "4000" ]
